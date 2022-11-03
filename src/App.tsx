@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
+import axios from "axios";
 
 // Hi guys! Let`s reinforce our session:
 
@@ -41,6 +42,11 @@ type PropsType=
 
 function App() {
     const [todos, setTodos] = useState<Array<PropsType>>([])
+
+    axios.get('https://jsonplaceholder.typicode.com/todos')
+    .then((res) => {
+        setTodos(res.data)
+   })
 
     useEffect(()=>{
         fetch('https://jsonplaceholder.typicode.com/todos')
